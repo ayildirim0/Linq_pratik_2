@@ -15,7 +15,7 @@ List<musicAlbum> list = new List<musicAlbum>()
     new musicAlbum { FullName="Neşet Ertaş", MusicGenre="Türk Halk Müziği / Türk Sanat Müziği", ReleaseYear="1960", AlbumSales=2000000 }
 };
 //Adı 'S' ile başlayan şarkıcılar
-var list2 = list.Where(x => x.FullName.StartsWith("A"));
+var list2 = list.Where(x => x.FullName.StartsWith("S"));
 Console.WriteLine("Adı 'S' ile başlayan şarkıcılar");
 foreach (var item in list2)
 {
