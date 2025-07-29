@@ -2,17 +2,17 @@
 
 List<musicAlbum> list = new List<musicAlbum>()
 {
-    new musicAlbum { FullName="Ajda Pekkan", MusicGenre="Pop", ReleaseYear="1968", AlbumSales=20000000 },
-    new musicAlbum { FullName="Sezen Aksu", MusicGenre="Türk Halk Müziği / Pop", ReleaseYear="1971", AlbumSales=10000000 },
-    new musicAlbum { FullName="Funda Arar", MusicGenre="Pop", ReleaseYear="1999", AlbumSales=3000000 },
-    new musicAlbum { FullName="Sertab Erener", MusicGenre="Pop", ReleaseYear="1994", AlbumSales=5000000 },
-    new musicAlbum { FullName="Sıla", MusicGenre="Pop", ReleaseYear="2009", AlbumSales=3000000 },
-    new musicAlbum { FullName="Serdar Ortaç", MusicGenre="Pop", ReleaseYear="1994", AlbumSales=10000000 },
-    new musicAlbum { FullName="Tarkan", MusicGenre="Pop", ReleaseYear="1992", AlbumSales=40000000 },
-    new musicAlbum { FullName="Hande Yener", MusicGenre="Pop", ReleaseYear="1999", AlbumSales=7000000 },
-    new musicAlbum { FullName="Hadise", MusicGenre="Pop", ReleaseYear="2005", AlbumSales=5000000 },
-    new musicAlbum { FullName="Gülben Ergen", MusicGenre="Pop / Türk Halk Müziği", ReleaseYear="1997", AlbumSales=10000000 },
-    new musicAlbum { FullName="Neşet Ertaş", MusicGenre="Türk Halk Müziği / Türk Sanat Müziği", ReleaseYear="1960", AlbumSales=2000000 }
+    new musicAlbum { FullName="Ajda Pekkan", MusicGenre="Pop", ReleaseYear=1968, AlbumSales=20000000 },
+    new musicAlbum { FullName="Sezen Aksu", MusicGenre="Türk Halk Müziği / Pop", ReleaseYear=1971, AlbumSales=10000000 },
+    new musicAlbum { FullName="Funda Arar", MusicGenre="Pop", ReleaseYear=1999, AlbumSales=3000000 },
+    new musicAlbum { FullName="Sertab Erener", MusicGenre="Pop", ReleaseYear=1994, AlbumSales=5000000 },
+    new musicAlbum { FullName="Sıla", MusicGenre="Pop", ReleaseYear=2009, AlbumSales=3000000 },
+    new musicAlbum { FullName="Serdar Ortaç", MusicGenre="Pop", ReleaseYear=1994, AlbumSales=10000000 },
+    new musicAlbum { FullName="Tarkan", MusicGenre="Pop", ReleaseYear=1992, AlbumSales=40000000 },
+    new musicAlbum { FullName="Hande Yener", MusicGenre="Pop", ReleaseYear=1999, AlbumSales=7000000 },
+    new musicAlbum { FullName="Hadise", MusicGenre="Pop", ReleaseYear=2005, AlbumSales=5000000 },
+    new musicAlbum { FullName="Gülben Ergen", MusicGenre="Pop / Türk Halk Müziği", ReleaseYear=1997, AlbumSales=10000000 },
+    new musicAlbum { FullName="Neşet Ertaş", MusicGenre="Türk Halk Müziği / Türk Sanat Müziği", ReleaseYear=1960, AlbumSales=2000000 }
 };
 //Adı 'S' ile başlayan şarkıcılar
 var list2 = list.Where(x => x.FullName.StartsWith("S"));
@@ -27,6 +27,19 @@ Console.WriteLine("Albüm satışları 10 milyon'un üzerinde olan şarkıcılar
 foreach (var item in list3)
 {
     Console.WriteLine(item.AlbumSales);
+}
+//2000 yılı öncesi çıkış yapmış ve pop müzik yapan şarkıcılar. ( Çıkış yıllarına göre gruplayarak, alfabetik bir sıra ile yazdırınız.
+var list4 = list.Where(x => x.ReleaseYear > 2000 && x.MusicGenre.Contains("Pop"))
+                .GroupBy(x => x.ReleaseYear);
+Console.WriteLine("2000 yılı öncesi çıkış yapmış ve pop müzik yapan şarkıcılar.");
+foreach (var item in list4)
+{
+    Console.WriteLine($"{item.Key} yılı");
+    var sort = item.OrderBy(x => x.FullName);
+    foreach (var i in item)
+    {
+        Console.WriteLine(i.FullName);
+    }
 }
 //En çok albüm satan şarkıcı
 var singer = list.OrderByDescending(x => x.AlbumSales).FirstOrDefault();
